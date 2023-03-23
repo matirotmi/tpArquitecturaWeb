@@ -1,6 +1,6 @@
 # tpArquitecturaWeb
 Trabajo practico Arquitectura Web
 
-##Tematica
+## Tematica
 
-##Servicios
+## Servicios
