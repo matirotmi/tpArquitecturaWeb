@@ -16,7 +16,9 @@ La API va a poder proveer chistes segun la preferencia del usuario (categoria, i
         "nsfw": false,\
         "racismo": false,\
         "politica": false,\
-        "religion": false\
+        "religion": false,\
+        "machismo":false,\
+        "explicito": false\
      }\
      "safe": true;\
   }
