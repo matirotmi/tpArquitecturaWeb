@@ -6,19 +6,19 @@ La API va a poder proveer chistes segun la preferencia del usuario (categoria, i
 
 # Modelo (ejemplo)
 ## Chiste 
-  {
-    "id": 1,
-    "categoria": "atp",
-    "tipo": "dospartes",
-    "inicio": "Mama mama, en el colegio me dicen alfajor",
-    "remate": "no te preocupes jorjito",
-    "flags":{
-        "nsfw": false,
-        "racismo": false,
-        "politica": false,
-        "religion": false
-     }
-     "safe": true;
+  {\
+    "id": 1,\
+    "categoria": "atp",\
+    "tipo": "dospartes",\
+    "inicio": "Mama mama, en el colegio me dicen alfajor",\
+    "remate": "no te preocupes jorjito",\
+    "flags":{\
+        "nsfw": false,\
+        "racismo": false,\
+        "politica": false,\
+        "religion": false\
+     }\
+     "safe": true;\
   }
 
 # Servicios
