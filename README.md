@@ -5,34 +5,34 @@ Trabajo practico Arquitectura Web
 La API va a poder proveer chistes segun la preferencia del usuario (categoria, idioma, cantidad de chistes, etc)
 
 # Modelo (ejemplo)
-cantidad: 1;
-chistes[
+## Chiste 
   {
-  "id": 1;
-  "categoria": "atp";
-  "inicio": "Mama mama, en el colegio me dicen alfajor";
-  "remate": "no te preocupes jorjito";
-  };
-]
+    "id": 1,
+    "categoria": "atp",
+    "tipo": "dospartes",
+    "inicio": "Mama mama, en el colegio me dicen alfajor",
+    "remate": "no te preocupes jorjito",
+    "flags":{
+        "nsfw": false,
+        "racismo": false,
+        "politica": false,
+        "religion": false
+     }
+     "safe": true;
+  }
 
 # Servicios
 
 ## GET
-getMedicos();
-getPacientes();
-getTurnos();
-getMedico(id);
-getPaciente(id);
-getTurno(id);
+getChistes();\
+getChiste(id);\
+getChistes(cantidad, categoria, tipo, flags);
 
 ## POST
-postMedico();
-postPaciente();
-postTurno();
+postChiste(categoria, tipo, inicio, remate, flags, safe);
 
 ## PUT
-putMedico();
-putPaciente();
-putTurno();
+putChiste(id, categoria, tipo, inicio, remate, flags, safe);
 
 ## DELETE
+deleteChiste(id);
