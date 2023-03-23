@@ -1,6 +1,24 @@
 # TP Arquitectura Web
 Trabajo practico Arquitectura Web
 
-## Tematica
+# Tematica Turnera Medica
 
-## Servicios
+
+# Entidades
+
+## Medico
+## Paciente
+## Turno
+
+# Servicios
+
+## GET
+
+## POST
+
+postMedico();
+postPaciente();
+postTurno();
+
+## PUT
+## DELETE
