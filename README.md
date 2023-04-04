@@ -1,40 +1,85 @@
 # TP Arquitectura Web
 Trabajo practico Arquitectura Web
 
-# Tematica API de Humor
-La API va a poder proveer chistes segun la preferencia del usuario (categoria, idioma, cantidad de chistes, etc)
+# Tematica Turnera medica
 
 # Modelo (ejemplo)
-## Chiste 
+## Medico 
   {\
     "id": 1,\
-    "categoria": "atp",\
-    "tipo": "dospartes",\
-    "inicio": "Mama mama, en el colegio me dicen alfajor",\
-    "remate": "no te preocupes jorjito",\
-    "flags":{\
-        "nsfw": false,\
-        "racismo": false,\
-        "politica": false,\
-        "religion": false,\
-        "machismo":false,\
-        "explicito": false\
-     }\
-     "safe": true;\
+    "nombre": "Rene",\
+    "apellido": "Favaloro",\
+    "legajo": "1234",\
+    "matricula": "0001",\
+    "especialidad":"cardiologia"\
+  }
+## Paciente 
+  {\
+    "id": 1,\
+    "nombre": "Matias",\
+    "apellido": "Rotmistrovsky",\
+    "dni": "44332211",\
+    "obra_social": "OSDE",\
+    "activo":true,\
+  }
+## Turno 
+  {\
+    "id": 1,\
+    "paciente": Paciente,\
+    "medico": Medico,\
+    "consultorio":Consultorio\
+    "fecha": "10/04/2023",\
+    "hora": "10:00",\
+    "confirmado":true,\
+  }
+
+## Consultorio
+
+  {\
+    "id": 1,\
+    "nombre":,\
+    "calle": "Federico Lacroze",\
+    "altura": "1548",\
+    "localidad": "belgrano",\
   }
 
 # Servicios
 
 ## GET
-getChistes();\
-getChiste(id);\
-getChistes(cantidad, categoria, tipo, flags);
+getMedicos();
+getPacientes();
+getTurnos();
+getConsultorio();
+getMedico(id);
+getPaciente(id);
+getTurno(id);
+getConsultorio(id);
+getTurnos(Paciente);
+getTurnos(Medico);
+getTurno(Paciente,fecha);
+getTurnos(fecha, Consultorio);
 
 ## POST
-postChiste(categoria, tipo, inicio, remate, flags, safe);
+postMedicos();
+postPacientes();
+postTurnos();
+postMedico(id,nombre, apellido, legajo, matricula, especialidad);
+postPaciente(id,nombre, apellido, dni, obra_social);
+postTurno(id,Paciente,Medico,Consultorio,fecha,confirmado);
+postConsultorio(id,nombre,calle,altura,localidad);
 
 ## PUT
-putChiste(id, categoria, tipo, inicio, remate, flags, safe);
+putMedico(id,nombre, apellido, legajo, matricula, especialidad);
+putPaciente(id,nombre, apellido, dni, obra_social);
+putTurno(id,Paciente,Medico,fecha,confirmado);
+putConsultorio(id,nombre,calle,altura,localidad);
 
 ## DELETE
-deleteChiste(id);
+deleteMedicos();
+deletePacientes();
+deleteTurnos();
+deleteConsultorios();
+deleteConsultorio(id)
+deleteMedico(legajo);
+deletePaciente(dni);
+deleteTurno(Paciente, fecha);
