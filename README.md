@@ -46,18 +46,18 @@ Trabajo practico Arquitectura Web
 # Servicios
 
 ## GET
-GET /medicos\
-GET /pacientes\
-GET /turnos\
-GET /consultorios\
-GET /medicos?id=x\ 
-GET /pacientes?id=x\
-GET /turnos?id=x\
-GET /consultorios?id=x\
-GET /pacientes/:paciente_id/turnos\
-GET /medicos/:medico_id/turnos\
-GET /pacientes/:paciente_id/turnos?fecha=:fecha\
-GET /medicos/:medico_id/turnos?fecha=:fecha\
+GET /medicos \
+GET /pacientes \
+GET /turnos \
+GET /consultorios \
+GET /pacientes?id=x \
+GET /medicos?id=x \
+GET /turnos?id=x \
+GET /consultorios?id=x \
+GET /pacientes/:paciente_id/turnos \
+GET /medicos/:medico_id/turnos \
+GET /pacientes/:paciente_id/turnos?fecha=:fecha \
+GET /medicos/:medico_id/turnos?fecha=:fecha \
 
 ## POST
 POST /medicos\
@@ -75,4 +75,4 @@ PUT /consultorios/{id}\
 DELETE /medicos/{id}\
 DELETE /pacientes/{id}\
 DELETE /turnos/{id}\
-DELETE /consultorios/{id}\
+DELETE /consultorios/{id}
