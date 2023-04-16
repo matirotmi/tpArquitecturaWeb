@@ -46,40 +46,33 @@ Trabajo practico Arquitectura Web
 # Servicios
 
 ## GET
-getMedicos();
-getPacientes();
-getTurnos();
-getConsultorio();
-getMedico(id);
-getPaciente(id);
-getTurno(id);
-getConsultorio(id);
-getTurnos(Paciente);
-getTurnos(Medico);
-getTurno(Paciente,fecha);
-getTurnos(fecha, Consultorio);
+GET /medicos\
+GET /pacientes\
+GET /turnos\
+GET /consultorios\
+GET /medicos?id=x\ 
+GET /pacientes?id=x\
+GET /turnos?id=x\
+GET /consultorios?id=x\
+GET /pacientes/:paciente_id/turnos\
+GET /medicos/:medico_id/turnos\
+GET /pacientes/:paciente_id/turnos?fecha=:fecha\
+GET /medicos/:medico_id/turnos?fecha=:fecha\
 
 ## POST
-postMedicos();
-postPacientes();
-postTurnos();
-postMedico(id,nombre, apellido, legajo, matricula, especialidad);
-postPaciente(id,nombre, apellido, dni, obra_social);
-postTurno(id,Paciente,Medico,Consultorio,fecha,confirmado);
-postConsultorio(id,nombre,calle,altura,localidad);
+POST /medicos\
+POST /pacientes\
+POST /turnos\
+POST /consultorio\
 
 ## PUT
-putMedico(id,nombre, apellido, legajo, matricula, especialidad);
-putPaciente(id,nombre, apellido, dni, obra_social);
-putTurno(id,Paciente,Medico,fecha,confirmado);
-putConsultorio(id,nombre,calle,altura,localidad);
+PUT /medicos/{id}\
+PUT /pacientes/{id}\
+PUT /turnos/{id}\
+PUT /consultorios/{id}\
 
 ## DELETE
-deleteMedicos();
-deletePacientes();
-deleteTurnos();
-deleteConsultorios();
-deleteConsultorio(id)
-deleteMedico(legajo);
-deletePaciente(dni);
-deleteTurno(Paciente, fecha);
+DELETE /medicos/{id}\
+DELETE /pacientes/{id}\
+DELETE /turnos/{id}\
+DELETE /consultorios/{id}\
