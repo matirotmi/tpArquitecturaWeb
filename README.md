@@ -54,10 +54,10 @@ GET /pacientes/{id} \
 GET /medicos/{id} \
 GET /turnos/{id} \
 GET /consultorios/{id} \
-GET /pacientes/:paciente_id/turnos \
-GET /medicos/:medico_id/turnos \
-GET /pacientes/:paciente_id/turnos?fecha=:fecha \
-GET /medicos/:medico_id/turnos?fecha=:fecha \
+GET /pacientes/{id}/turnos \
+GET /medicos/{id}/turnos \
+GET /pacientes/{id}/turnos?fecha={fecha} \
+GET /medicos/{id}/turnos?fecha={fecha} \
 
 ## POST
 POST /medicos\
