@@ -50,10 +50,10 @@ GET /medicos \
 GET /pacientes \
 GET /turnos \
 GET /consultorios \
-GET /pacientes?id=x \
-GET /medicos?id=x \
-GET /turnos?id=x \
-GET /consultorios?id=x \
+GET /pacientes/{id} \
+GET /medicos/{id} \
+GET /turnos/{id} \
+GET /consultorios/{id} \
 GET /pacientes/:paciente_id/turnos \
 GET /medicos/:medico_id/turnos \
 GET /pacientes/:paciente_id/turnos?fecha=:fecha \
