@@ -1,22 +1,17 @@
 const express = require('express');
-const Model = require('../models/model');
+const Model = require('../models/paciente');
 
 const router = express.Router()
 
 module.exports = router;
 
-//Post Method (NO ANDA CON BODY)
+//Post Method
 router.post('/post', async (req, res) => {
-    const data = new Model({
-        name: "Matias",
-        apellido: "Rotmistrovsky",
-        edad: 23,
-        dni: 42375214,
-        obraSocial: "OSDE"
-    })
+
+    const paciente = Model(req.body);
 
     try {
-        const dataToSave = await data.save();
+        const dataToSave = await paciente.save();
         res.status(200).json(dataToSave)
     }
     catch (error) {
@@ -24,7 +19,7 @@ router.post('/post', async (req, res) => {
     }
 })
 
-//Get all Method (FUNCA BIEN)
+//Get all Method
 router.get('/getAll', async (req, res) => {
     try{
         const data = await Model.find();
@@ -35,7 +30,7 @@ router.get('/getAll', async (req, res) => {
     }
 })
 
-//Get by ID Method (FUNCA BIEN)
+//Get by ID Method
 router.get('/getOne/:id', async (req, res) => {
     try{
         const data = await Model.findById(req.params.id);
@@ -64,7 +59,7 @@ router.put('/update/:id', async (req, res) => {
     }
 })
 
-//Delete by ID Method (FUNCA BIEN)
+//Delete by ID Method
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;

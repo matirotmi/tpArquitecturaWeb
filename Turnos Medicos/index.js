@@ -5,7 +5,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
 
-const routes = require('./routes/routes');
+const pacientesRoutes = require('./routes/pacientes');
+const medicosRoutes = require('./routes/medicos');
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -19,7 +20,9 @@ database.once('connected', () => {
 })
 
 const app = express();
-app.use('/api', routes);
+app.use(express.json());
+app.use('/pacientes', pacientesRoutes);
+app.use('/medicos', medicosRoutes);
 
 app.listen(port, () => {
     console.log(`Server Started at ${port}`)

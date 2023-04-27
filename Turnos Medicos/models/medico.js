@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const paciente = new mongoose.Schema({
-    name: {
+const medico = new mongoose.Schema({
+    nombre: {
         required: true,
         type: String
     },
@@ -9,18 +9,18 @@ const paciente = new mongoose.Schema({
         required: true,
         type: String
     },
-    edad: {
+    legajo: {
         required: true,
         type: Number
     },
-    dni: {
+    matricula: {
         required: true,
         type: Number
     },
-    obraSocial: {
+    especialidad: {
         required: true,
         type: String
     }
 })
 
-module.exports = mongoose.model('Data', paciente)
+module.exports = mongoose.model('Medico', medico)
