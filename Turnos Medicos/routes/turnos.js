@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../models/consultorio');
+const Model = require('../models/turno');
 
 const router = express.Router()
 
@@ -8,10 +8,10 @@ module.exports = router;
 //Post Method
 router.post('/post', async (req, res) => {
 
-    const consultorio = Model(req.body);
+    const turno = Model(req.body);
 
     try {
-        const dataToSave = await consultorio.save();
+        const dataToSave = await turno.save();
         res.status(200).json(dataToSave)
     }
     catch (error) {

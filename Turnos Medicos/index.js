@@ -8,6 +8,7 @@ const mongoString = process.env.DATABASE_URL;
 const pacientesRoutes = require('./routes/pacientes');
 const medicosRoutes = require('./routes/medicos');
 const consultorioRoutes = require('./routes/consultorios');
+const turnoRoutes = require('./routes/turnos');
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use('/pacientes', pacientesRoutes);
 app.use('/medicos', medicosRoutes);
 app.use('/consultorios', consultorioRoutes);
+app.use('/turnos', turnoRoutes);
 
 app.listen(port, () => {
     console.log(`Server Started at ${port}`)
