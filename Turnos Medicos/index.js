@@ -1,4 +1,4 @@
-const port = 3000
+const port = 3001
 require('dotenv').config();
 
 const express = require('express');
@@ -27,6 +27,10 @@ app.use('/pacientes', pacientesRoutes);
 app.use('/medicos', medicosRoutes);
 app.use('/consultorios', consultorioRoutes);
 app.use('/turnos', turnoRoutes);
+
+app.get("/", (req, res) => {
+    res.json({ message: "Hello from server!" });
+  });
 
 app.listen(port, () => {
     console.log(`Server Started at ${port}`)
