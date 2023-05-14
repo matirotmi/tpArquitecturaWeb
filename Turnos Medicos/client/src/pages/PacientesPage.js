@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 function PacientesPage() {
-  const [paciente, setPaciente] = useState(new Paciente("Mati", "Rot", 10, 112233, "SwissMed"));
+  const [paciente, setPaciente] = useState(new Paciente("NOM", "APE", 10, 112233, "OBRA_SOCIAL"));
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [edad, setEdad] = useState("");

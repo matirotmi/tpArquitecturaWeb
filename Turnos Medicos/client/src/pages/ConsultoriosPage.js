@@ -8,11 +8,29 @@ import Button from '@mui/material/Button';
 import { Consultorio } from '../models/consultorio';
 
 function ConsultoriosPage() {
-  const [consultorio, setConsultorio] = useState(new Consultorio("", "", 0, ""));
+  const [consultorio, setConsultorio] = useState(new Consultorio("NOMBRE", "CALLE", 10, "LOCALIDAD"));
   const [nombre, setNombre] = useState("");
   const [calle, setCalle] = useState("");
   const [altura, setAltura] = useState("");
   const [localidad, setLocalidad] = useState("");
+
+  const postData = async (data) => {
+    try {
+      const response = await fetch('/consultorios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const dataFromServer = await response.json();
+      console.log(dataFromServer); // Imprime la respuesta del servidor en la consola
+      setConsultorio(dataFromServer);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <NavBar/>
@@ -35,6 +53,7 @@ function ConsultoriosPage() {
         <Button variant='outlined' onClick={()=>{
              setConsultorio(new Consultorio(nombre, calle, altura, localidad));
              console.log(consultorio);
+             /* postData(consultorio); */
           }}>
             Cargar
         </Button>

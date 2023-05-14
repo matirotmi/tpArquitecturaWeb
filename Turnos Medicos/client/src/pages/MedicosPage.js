@@ -8,12 +8,30 @@ import Button from '@mui/material/Button';
 import { Medico } from '../models/medico';
 
 function MedicosPage() {
-  const [medico, setMedico] = useState(new Medico("", "", 0, 0, ""));
+  const [medico, setMedico] = useState(new Medico("NOM", "APE", 10, 100, "ESPECIALIDAD"));
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [legajo, setLegajo] = useState("");
   const [matricula, setMatricula] = useState("");
   const [especialidad, setEspecialidad] = useState("");
+
+  const postData = async (data) => {
+    try {
+      const response = await fetch('/medicos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const dataFromServer = await response.json();
+      console.log(dataFromServer); // Imprime la respuesta del servidor en la consola
+      setMedico(dataFromServer);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <NavBar/>
@@ -39,6 +57,7 @@ function MedicosPage() {
         <Button variant='outlined' onClick={()=>{
              setMedico(new Medico(nombre, apellido, legajo, matricula, especialidad));
              console.log(medico);
+             /* postData(medico); */
           }}>
             Cargar
         </Button>
