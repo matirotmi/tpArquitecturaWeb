@@ -6,17 +6,29 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button } from '@mui/material';
 
 export default function TablaConsultorios() {
 
   const [data, setData] = React.useState([]);
   
-  /* Ejemplo cliente haciendo request al server*/
   React.useEffect(() => {
     fetch("/consultorios")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
+
+  const deleteData = async (id) => {
+    try {
+      const response = await fetch(`/consultorios/${id}`, {
+        method: 'DELETE',
+      });
+      const dataFromServer = await response.json();
+      console.log(dataFromServer); // Imprime la respuesta del servidor en la consola
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -27,15 +39,22 @@ export default function TablaConsultorios() {
             <TableCell align="left">Calle</TableCell>
             <TableCell align="left">Altura</TableCell>
             <TableCell align="left">Localidad</TableCell>
+            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((consultorio) => (
-            <TableRow>
+            <TableRow key={consultorio._id}>
               <TableCell align="left">{consultorio.nombre}</TableCell>
               <TableCell align="left">{consultorio.calle}</TableCell>
               <TableCell align="left">{consultorio.altura}</TableCell>
               <TableCell align="left">{consultorio.localidad}</TableCell>
+              <TableCell align="left" >
+                <Button variant="outlined" color="error"
+                  onClick={()=>deleteData(consultorio._id)}>
+                  Delete
+                </Button>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>

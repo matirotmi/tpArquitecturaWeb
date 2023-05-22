@@ -6,17 +6,29 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button } from '@mui/material';
 
 export default function TablaPacientes() {
 
   const [data, setData] = React.useState([]);
   
-  /* Ejemplo cliente haciendo request al server*/
   React.useEffect(() => {
     fetch("/pacientes ")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
+
+  const deleteData = async (id) => {
+    try {
+      const response = await fetch(`/pacientes/${id}`, {
+        method: 'DELETE',
+      });
+      const dataFromServer = await response.json();
+      console.log(dataFromServer); // Imprime la respuesta del servidor en la consola
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -27,19 +39,27 @@ export default function TablaPacientes() {
             <TableCell align="left">Edad</TableCell>
             <TableCell align="left">DNI</TableCell>
             <TableCell align="left">Obra social</TableCell>
+            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((paciente) => (
-            <TableRow>
+            <TableRow  key={paciente._id}>
               <TableCell align="left">{paciente.nombre + " " + paciente.apellido}</TableCell>
               <TableCell align="left">{paciente.edad}</TableCell>
               <TableCell align="left">{paciente.dni}</TableCell>
               <TableCell align="left">{paciente.obraSocial}</TableCell>
+              <TableCell align="left" >
+                <Button variant="outlined" color="error" 
+                  onClick={()=> deleteData(paciente._id)}>
+                  Delete
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+
   );
 }
