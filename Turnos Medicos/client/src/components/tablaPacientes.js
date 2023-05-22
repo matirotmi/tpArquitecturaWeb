@@ -24,7 +24,7 @@ export default function TablaPacientes() {
         method: 'DELETE',
       });
       const dataFromServer = await response.json();
-      console.log(dataFromServer); // Imprime la respuesta del servidor en la consola
+      console.log(dataFromServer);
     } catch (error) {
       console.error(error);
     }
