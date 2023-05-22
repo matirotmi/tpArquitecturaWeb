@@ -11,6 +11,9 @@ export default function NavBar() {
       <AppBar position="static">
         <Toolbar>
           <Button color="inherit">
+            <Link href="/" color="inherit">HOME</Link>
+          </Button>
+          <Button color="inherit">
             <Link href="/pacientes" color="inherit">Pacientes</Link>
           </Button>
           <Button color="inherit">

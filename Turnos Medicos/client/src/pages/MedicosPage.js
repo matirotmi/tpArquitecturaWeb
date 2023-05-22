@@ -10,7 +10,6 @@ function MedicosPage() {
       <NavBar/>
       <Typography textAlign="center" fontSize="40px">Medicos</Typography>
       <TablaMedicos/>
-      <br/>
       <CreadorMedicos/>
     </div>
   );
