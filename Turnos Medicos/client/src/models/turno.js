@@ -15,6 +15,5 @@ export class Turno {
         this.Consultorio = Consultorio;
         this.fechaYhora = fechaYhora;
         this.confirmado = confirmado;
-
     }
 }

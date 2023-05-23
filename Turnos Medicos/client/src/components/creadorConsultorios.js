@@ -43,6 +43,7 @@ function CreadorConsultorios() {
           onChange={(newValue) => setAltura(newValue.target.value)}/>
         <TextField id="txtMatricula" label="Localidad" variant="outlined" value={localidad}
           onChange={(newValue) => setLocalidad(newValue.target.value)}/>
+        <br></br>
         <Button variant='outlined' onClick={()=>{
              postData(new Consultorio(nombre, calle, altura, localidad));
           }}>
