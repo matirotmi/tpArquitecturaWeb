@@ -12,40 +12,43 @@ import { Medico } from '../models/medico';
 import { Consultorio } from '../models/consultorio';
 import { Turno } from '../models/turno';
 
-const example = {
-    "paciente": {
-        "nombre": "Matias",
-        "apellido": "Rotmistrovsky",
-        "edad": 23,
-        "dni": 42375214,
-        "obraSocial": "Swiss Medical"
-    },
-    "medico": {
-        "nombre": "Rene",
-        "apellido": "Favaloro",
-        "legajo": 1234,
-        "matricula": 1000,
-        "especialidad": "cardiologia"
-    },
-    "consultorio":{
-        "nombre": "Consultorio Belgrano",
-        "calle": "Av del Libertador",
-        "altura": 5933,
-        "localidad": "Belgrano"
-    },
-    "fechaYhora": "10/05/2023",
-    "confirmado":true
-  }
-
 function CreadorTurnos() {
-  const [pacientes, setPacientes] = React.useState([]);
-  const [medicos, setMedicos] = React.useState([]);
-  const [consultorios, setConsultorios] = React.useState([]);
+  const [pacientes, setPacientes] = React.useState(new Array());
+  const [medicos, setMedicos] = React.useState(new Array());
+  const [consultorios, setConsultorios] = React.useState(new Array());
 
   const [paciente, setPaciente] = React.useState(new Paciente("NOM", "APE", 10, 112233, "OBRA_SOCIAL"));
   const [medico, setMedico] = React.useState(new Medico("NOM", "APE", 10, 100, "ESPECIALIDAD"));
   const [consultorio, setConsultorio] = React.useState(new Consultorio("NOMBRE", "CALLE", 10, "LOCALIDAD"));
   const [fechaYhora, setFechaHora] = React.useState(new Date());
+
+  function armarModelo(p, m, c, f, conf){
+    const example = {
+        paciente: {
+            nombre: p.nombre,
+            apellido: p.apellido,
+            edad: p.edad,
+            dni: p.dni,
+            obraSocial: p.obraSocial
+        },
+        medico: {
+            nombre: m.nombre,
+            apellido: m.apellido,
+            legajo: m.legajo,
+            matricula: m.matricula,
+            especialidad: m.especialidad
+        },
+        consultorio:{
+            nombre: c.nombre,
+            calle: c.calle,
+            altura: c.altura,
+            localidad: c.localidad
+        },
+        fechaYhora: f,
+        confirmado: conf
+      }
+      return example;
+  }
 
   const postData = async (data) => {
     try {
@@ -88,34 +91,59 @@ function CreadorTurnos() {
         <Grid container spacing={1}>
           <Grid item xs={3}>
             <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={pacientes.map((option)=>option.nombre + " " + option.apellido)}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Paciente" />}
-            />
+                onChange={(event, newValue) => { setPaciente(newValue);}}
+                id="select-paciente"
+                sx={{ width: 300 }}
+                options={pacientes}
+                autoHighlight
+                getOptionLabel={(option) => option.nombre + " " + option.apellido}
+                renderOption={(props, option) => (
+                    <Box sx={{ mr: 2, flexShrink: 0 } } {...props}>
+                        {option.nombre} {option.apellido}
+                    </Box>
+                )}
+                renderInput={(params) => (
+                    <TextField {...params} label="Paciente" inputProps={{...params.inputProps}}/>)}
+                />
           </Grid>
           <Grid item xs={3}>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={medicos.map((option)=>option.nombre + " " + option.apellido)}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Medico" />}
-            />
+          <Autocomplete
+                onChange={(event, newValue) => { setMedico(newValue);}}
+                id="select-paciente"
+                sx={{ width: 300 }}
+                options={medicos}
+                autoHighlight
+                getOptionLabel={(option) => option.nombre + " " + option.apellido}
+                renderOption={(props, option) => (
+                    <Box sx={{ mr: 2, flexShrink: 0 } } {...props}>
+                        {option.nombre} {option.apellido}
+                    </Box>
+                )}
+                renderInput={(params) => (
+                    <TextField {...params} label="Medico" inputProps={{...params.inputProps}}/>)}
+                />
           </Grid>
           <Grid item xs={3}>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={consultorios.map((option)=>option.nombre)}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Consultorio" />}
-            />
+          <Autocomplete
+                onChange={(event, newValue) => { setConsultorio(newValue);}}
+                id="select-paciente"
+                sx={{ width: 300 }}
+                options={consultorios}
+                autoHighlight
+                getOptionLabel={(option) => option.nombre}
+                renderOption={(props, option) => (
+                    <Box sx={{ mr: 2, flexShrink: 0 } } {...props}>
+                        {option.nombre} {option.apellido}
+                    </Box>
+                )}
+                renderInput={(params) => (
+                    <TextField {...params} label="Consultorio" inputProps={{...params.inputProps}}/>)}
+                />
           </Grid>
           <Grid item xs={3}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DateTimePicker label="Basic date time picker" />
+              <DateTimePicker label="Basic date time picker" 
+                onChange={(newValue) => setFechaHora(newValue)}/>
             </LocalizationProvider>
           </Grid>
         </Grid>
@@ -123,8 +151,7 @@ function CreadorTurnos() {
       <br></br>
       <Button variant='outlined' 
         onClick={() => 
-            postData(new Turno(paciente,medico,consultorio,fechaYhora,true))            
-           /*  console.log(new Turno(paciente,medico,consultorio,fechaYhora,true)) */
+            postData(armarModelo(paciente, medico, consultorio, fechaYhora, true))
         }>
         Cargar
       </Button>
